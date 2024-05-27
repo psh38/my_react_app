@@ -18,7 +18,8 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mode:'read',
+      mode:'welcome',
+      selected_id:2,
       subject:{
         title:'react',
         desc:'Single Page Application'
@@ -41,33 +42,35 @@ class App extends Component {
       _title =this.state.welcome.title;
       _desc =this.state.welcome.desc;
     }else if(this.state.mode === 'read'){
-      _title =this.state.menus[0].title;
-      _desc =this.state.menus[0].desc;
+      let i = 0;
+      while(i<this.state.menus.length){
+        let data = this.state.menus[i];
+        if(data.id === this.state.selected_id){
+          _title = data.title;
+          _desc = data.desc;
+        }
+        i++;
+      }
     }
     return (
       <div className="App">
         {/* props title/ desc */}
-        {/* <Myheader title={this.state.subject.title} desc={this.state.subject.desc}/> */}
-        <header>
-          <h1 className="logo">
-            {/* <a href="" onClick={function(e){
-              e.preventDefault();
-              this.setState({
-                mode: 'welcome'
-              });
-            }.bind(this)}
-            >{this.state.subject.title}</a> */}
-            <a href="" onClick={(e)=>{
-              e.preventDefault();
-              this.setState({
-                mode: 'welcome'
-              });
-            }}
-            >{this.state.subject.title}</a>
-          </h1>
-          <p>{this.state.subject.desc}</p>
-        </header>
-        <Mynav data={this.state.menus}/>
+        {/* bind 방법 */}
+        {/* <Myheader title={this.state.subject.title} desc={this.state.subject.desc} onChanePage={function(){
+          this.setState({mode:'welcome'})
+        }.bind(this)}/> */}
+        {/* arrow */}
+        <Myheader title={this.state.subject.title} desc={this.state.subject.desc} onChanePage={(val)=>{
+          this.setState({mode:val})
+        }}/>
+        <Mynav data={this.state.menus} onChanePage={(id)=>{
+          console.log(id);
+          this.setState({
+            mode:'read',
+            selected_id:Number(id)
+          })
+        }}/>
+
         <Myariticle title={_title} desc={_desc}/>
       </div>
     )

@@ -8,7 +8,11 @@ class Myheader extends Component {
       //주의사항 JSX문법영역 이기 때문에 부모가 반드시 있어야 함!
       <header>
         <h1 className="logo">
-          <a href="">{this.props.title}</a>
+          <a href="" onClick={(e)=>{
+            e.preventDefault();
+            this.props.onChanePage('welcome');
+          }}
+          >{this.props.title}</a>
         </h1>
         <p>{this.props.desc}</p>
       </header>
