@@ -3,6 +3,7 @@ import { Component } from 'react';
 // Myariticle
 class Myariticle extends Component {
   render() {
+    console.log('Myarticle 실행');
     return (
       <section>
         <article>

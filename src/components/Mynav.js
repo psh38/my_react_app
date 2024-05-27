@@ -3,6 +3,7 @@ import { Component } from 'react';
 // Mynav
 class Mynav extends Component {
   render() {
+    console.log('Mynav 실행');
     console.log(this.props);
     let lists =[];
     let data = this.props.data;
