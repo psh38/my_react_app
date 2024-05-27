@@ -15,8 +15,6 @@ import './App.css';
 // Myheader
 class Myheader extends Component {
   render() {
-    console.log(this);
-    console.log(this.props);
     return (
       //주의사항 JSX문법영역 이기 때문에 부모가 반드시 있어야 함!
       <header>
@@ -59,8 +57,8 @@ class Myariticle extends Component {
     return (
       <section>
         <article>
-          <h2>HTML</h2>
-          <p>Hypertext markup language</p>
+          <h2>{this.props.title}</h2>
+          <p>{this.props.desc}</p>
         </article>
       </section>
     )
@@ -75,7 +73,7 @@ class App extends Component {
         {/* props title/ desc */}
         <Myheader title="React" desc="Single Page Application"/>
         <Mynav/>
-        <Myariticle/>
+        <Myariticle title="HTML" desc="Hypertext markup language"/>
       </div>
     )
   }
