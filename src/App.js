@@ -15,12 +15,26 @@ import Myariticle from './components/Myarticle';
 
 //클래스형
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      subject:{
+        title:'react',
+        desc:'Single Page Application'
+      },
+      menus:[
+        {id:1, title:'HTML',desc:'Hypertext markup language'},
+        {id:2, title:'CSS',desc:'CSS is for design'},
+        {id:3, title:'JS',desc:'JS is for interaction'}
+      ]
+    };
+  }
   render() {
     return (
       <div className="App">
         {/* props title/ desc */}
-        <Myheader title="React" desc="Single Page Application"/>
-        <Mynav/>
+        <Myheader title={this.state.subject.title} desc={this.state.subject.desc}/>
+        <Mynav data={this.state.menus}/>
         <Myariticle title="HTML" desc="Hypertext markup language"/>
       </div>
     )
