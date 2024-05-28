@@ -67,6 +67,7 @@ class App extends Component {
           let _menus =  this.state.menus.concat({id:this.max_id, title:_title, desc:_desc});
           
           this.setState({
+            // menus:this.state.menus
             menus:_menus
           })
           console.log(this.state.menus);
