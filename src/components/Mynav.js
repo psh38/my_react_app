@@ -2,6 +2,17 @@ import { Component } from 'react';
 
 // Mynav
 class Mynav extends Component {
+  // 기본값은 true
+  shouldComponentUpdate(nextProps,nextState){
+    console.log('shouldComponentUpdate 작동',
+    this.props.data,
+    nextProps.data
+    );
+    if(this.props.data === nextProps.data){
+      return false;
+    }
+    return true;
+  }
   render() {
     console.log('Mynav 실행');
     console.log(this.props);

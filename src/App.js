@@ -21,7 +21,7 @@ class App extends Component {
     super(props);
     this.max_id= 3;
     this.state = {
-      mode:'create',
+      mode:'welcome',
       selected_id:2,
       subject:{
         title:'react',
@@ -61,13 +61,30 @@ class App extends Component {
         _article = <CreatArticle onSubmit={(_title,_desc)=>{
           // this.max_id = this.max_id +1
           this.max_id += 1;
+          // push -> 이전값과 이후 값을 비교할수 없음 원본을 수정했기 때문
           // this.state.menus.push(
           //   {id:this.max_id, title:_title, desc:_desc}
           // )
-          let _menus =  this.state.menus.concat({id:this.max_id, title:_title, desc:_desc});
+
+          // concat -> 원본그대로 유지하고 복사본(값추가)업데이트(이전값과 이후 값을 비교할 수 있음)
+          // let _menus =  this.state.menus.concat({id:this.max_id, title:_title, desc:_desc});
+
+          //Array from
+          // let _menus =  Array.from(this.state.menus);
+          // _menus.push(
+          //   {id:this.max_id, title:_title, desc:_desc}
+          // )
+
+          // spread
+          let _menus =  [...this.state.menus];
+          _menus.push(
+            {id:this.max_id, title:_title, desc:_desc}
+          )
           
           this.setState({
             // menus:this.state.menus
+            
+            //concate/arrayfrom/spread
             menus:_menus
           })
           console.log(this.state.menus);

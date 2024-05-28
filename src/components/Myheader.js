@@ -2,6 +2,9 @@ import { Component } from 'react';
 
 // Myheader
 class Myheader extends Component {
+  shouldComponentUpdate(){
+    return false;
+  }
   render() {
     console.log('Myheader 실행');
     return (
