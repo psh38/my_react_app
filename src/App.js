@@ -19,6 +19,7 @@ import CreatArticle from './components/CreatArticle';
 class App extends Component {
   constructor(props){
     super(props);
+    this.max_id= 3;
     this.state = {
       mode:'create',
       selected_id:2,
@@ -57,8 +58,18 @@ class App extends Component {
       }
       _article = <ReadArticle title={_title} desc={_desc}/>;
     }else if(this.state.mode === 'create'){
-      _article = <CreatArticle onSubmit={(_title,_desc)=>{
-        console.log(_title,_desc);
+        _article = <CreatArticle onSubmit={(_title,_desc)=>{
+          // this.max_id = this.max_id +1
+          this.max_id += 1;
+          // this.state.menus.push(
+          //   {id:this.max_id, title:_title, desc:_desc}
+          // )
+          let _menus =  this.state.menus.concat({id:this.max_id, title:_title, desc:_desc});
+          
+          this.setState({
+            menus:_menus
+          })
+          console.log(this.state.menus);
       }}/>;
     }
 
