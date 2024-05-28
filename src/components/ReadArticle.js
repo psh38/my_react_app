@@ -1,7 +1,7 @@
 import { Component } from 'react';
 
 // Myariticle
-class Myariticle extends Component {
+class ReadArticle extends Component {
   render() {
     console.log('Myarticle 실행');
     return (
@@ -15,4 +15,4 @@ class Myariticle extends Component {
   }
 }
 
-export default Myariticle;
+export default ReadArticle;

@@ -2,7 +2,9 @@ import { Component, setState } from 'react';
 import './App.css';
 import Myheader from './components/Myheader';
 import Mynav from './components/Mynav';
-import Myariticle from './components/Myarticle';
+import ReadArticle from './components/ReadArticle';
+import Controls from './components/Controls';
+import CreatArticle from './components/CreatArticle';
 
 // 함수형 (최근 추세)
 // function App() {
@@ -18,7 +20,7 @@ class App extends Component {
   constructor(props){
     super(props);
     this.state = {
-      mode:'welcome',
+      mode:'create',
       selected_id:2,
       subject:{
         title:'react',
@@ -37,10 +39,12 @@ class App extends Component {
   }
   render() {
     console.log('App 실행')
-    let _title, _desc = null;
+    let _title, _desc, _article = null;
+    
     if(this.state.mode === 'welcome'){
       _title =this.state.welcome.title;
       _desc =this.state.welcome.desc;
+      _article = <ReadArticle title={_title} desc={_desc}/>;
     }else if(this.state.mode === 'read'){
       let i = 0;
       while(i<this.state.menus.length){
@@ -51,7 +55,13 @@ class App extends Component {
         }
         i++;
       }
+      _article = <ReadArticle title={_title} desc={_desc}/>;
+    }else if(this.state.mode === 'create'){
+      _article = <CreatArticle onSubmit={(_title,_desc)=>{
+        console.log(_title,_desc);
+      }}/>;
     }
+
     return (
       <div className="App">
         {/* props title/ desc */}
@@ -71,7 +81,13 @@ class App extends Component {
           })
         }}/>
 
-        <Myariticle title={_title} desc={_desc}/>
+        {_article}
+
+        <hr/>
+
+        <Controls onChaneMode={(val)=>{
+          this.setState({mode:val})
+        }}/>
       </div>
     )
   }
