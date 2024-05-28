@@ -48,7 +48,9 @@ class App extends Component {
       _article = <ReadArticle title={_title} desc={_desc}/>;
     }else if(this.state.mode === 'read'){
       let _data = this.getReadArticle();
-      _article = <ReadArticle title={_data.title} desc={_data.desc}/>;
+      _article = <ReadArticle title={_data.title} desc={_data.desc} onChaneMode={(val)=>{
+        this.setState({mode:val})
+      }}/>;
     }else if(this.state.mode === 'create'){
         _article = <CreatArticle onSubmit={(_title,_desc)=>{
           // this.max_id = this.max_id +1
@@ -135,7 +137,26 @@ class App extends Component {
 
         <hr/>
 
-        <Controls onChaneMode={(val)=>{
+        <Controls mode={this.state.mode} onChaneMode={(val)=>{
+          if(val === 'delete'){
+            if(window.confirm('정말 삭제해용?')){
+              let _menus =[...this.state.menus];
+              _menus.forEach((item,idx)=>{
+                if(_menus[idx].id === this.state.selected_id){
+                  _menus.splice(idx,1);
+                }
+              })
+              // let i = 0;
+              // while(i<_menus.length){
+              //   if(_menus[i].id === this.state.selected_id){
+              //   _menus.splice(i,1);
+              //   break;
+              //   }
+              //   i++
+              // }
+              this.setState({menus:_menus, mode:'welcome'})
+            }
+          }
           this.setState({mode:val})
         }}/>
       </div>

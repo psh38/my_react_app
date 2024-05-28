@@ -7,23 +7,29 @@ class Controls extends Component {
     
     return (
       <ul className='controls'>
-        <li>
-          <a href="" onClick={(e)=>{
-            e.preventDefault();
-            this.props.onChaneMode('update');
-          }}>update</a>
-        </li>
-        <li>
-          <a href="" onClick={(e)=>{
-            e.preventDefault();
-            this.props.onChaneMode('delete');
-          }}>delete</a>
-        </li>
-        <li>
-          <button onClick={(e)=>{
-            this.props.onChaneMode('create');
-          }}>create</button>
-        </li>
+        {
+          this.props.mode === 'read' ?
+        <>
+          <li>
+            <a href="" onClick={(e)=>{
+              e.preventDefault();
+              this.props.onChaneMode('update');
+            }}>update</a>
+          </li>
+          <li>
+            <a href="" onClick={(e)=>{
+              e.preventDefault();
+              this.props.onChaneMode('delete');
+              
+            }}>delete</a>
+          </li>
+        </> :
+          <li>
+            <button onClick={(e)=>{
+              this.props.onChaneMode('create');
+            }}>Create</button>
+          </li>
+        }
       </ul>
       
     )
