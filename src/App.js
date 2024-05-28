@@ -83,11 +83,18 @@ class App extends Component {
       }}/>;
     }else if (this.state.mode === 'update'){
       let _data = this.getReadArticle();
-      _article = <UdateArticle data={_data} onSubmit={(_title,_desc)=>{
-          
-      // this.setState({
-      //   menus:_menus
-      // })
+      _article = <UdateArticle data={_data} onSubmit={(_id,_title,_desc)=>{
+      console.log(_id,_title,_desc);
+      let _menus = Array.from(this.state.menus);
+      _menus.forEach((item,idx)=>{
+        if(item.id === _id){
+          _menus[idx]={id:_id,title:_title,desc:_desc}
+        }
+      })
+      this.setState({
+        menus:_menus,
+        mode:'read'
+      })
       }}/>;
     }
     return _article;
